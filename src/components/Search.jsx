@@ -61,7 +61,7 @@ function Search() {
       <Link to={"/search?cars=" + cars + "&make=" + make + "&price=" + price}>
         <CiSearch
           className="text-[50px] bg-primary 
-        rounded-full p-3 text-white hover:scale-105 transition-all cursor-pointer"
+        rounded-full p-3 text-white hover:bg-transparent hover:text-[#6f0320] transition-all cursor-pointer"
         />
       </Link>
     </div>

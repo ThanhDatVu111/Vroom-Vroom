@@ -26,7 +26,7 @@ function Header() {
       </ul>
 
       {isSignedIn === undefined ? (
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-5 hover:bg-transparent hover:text-[#6f0320]">
           <UserButton />
           <Link to={"/profile"}>
             <Button>Submit Listing</Button>

@@ -12,7 +12,7 @@ function CarItem({ car }) {
         <h2 className="absolute m-2 bg-green-500 px-2 rounded-full text-sm text-white">
           New
         </h2>
-        <img src={car?.image} width={400} height={300} />
+        <img src={car?.image} width={380} height={250} />
         <div className="p-4">
           <h2 className="font-bold text-white text-lg mb-2">{car?.name}</h2>
           <Separator />
