@@ -8,13 +8,13 @@ import TextAreaField from "./components/TextAreaField";
 import features from "./../Shared/features.json";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
-import { BiLoaderAlt } from "react-icons/bi";
+import { db } from "./../../configs";
+import { CarImages, CarListing } from "./../../configs/schema";
 
 const AddListing = () => {
   const [formData, setFormData] = useState([]);
   const [featuresData, setFeaturesData] = useState([]);
   const [carInfo, setCarInfo] = useState();
-  const [loader, setLoader] = useState(false);
 
   const handleInputChange = (name, value) => {
     setFormData((prevData) => ({
@@ -33,9 +33,20 @@ const AddListing = () => {
   };
 
   const onSubmit = async (e) => {
-    setLoader(true);
     e.preventDefault();
     console.log(formData);
+
+    try {
+      const result = await db.insert(CarListing).values({
+        ...formData,
+        features: featuresData,
+      });
+      if (result) {
+        console.log("Data Saved");
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -96,16 +107,8 @@ const AddListing = () => {
             </div>
           </div>
           <div className="mt-10 flex justify-end">
-            <Button
-              type="button"
-              disabled={loader}
-              onClick={(e) => onSubmit(e)}
-            >
-              {!loader ? (
-                "Submit"
-              ) : (
-                <BiLoaderAlt className="animate-spin text-lg" />
-              )}
+            <Button type="button" onClick={(e) => onSubmit(e)}>
+              Submit
             </Button>
           </div>
         </form>
