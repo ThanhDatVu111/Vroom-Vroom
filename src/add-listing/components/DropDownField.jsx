@@ -12,7 +12,7 @@ function DropdownField({ item, handleInputChange, carInfo }) {
     <div>
       <Select
         onValueChange={(value) => handleInputChange(item.name, value)}
-        required={item.required}
+        required={item.required} //The required attribute tells the browser that this input is mandatory.
         defaultValue={carInfo?.[item?.name]}
       >
         <SelectTrigger className="w-full">

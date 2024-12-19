@@ -6,7 +6,7 @@ function TextAreaField({ item, handleInputChange, carInfo }) {
     <div>
       <Textarea
         onChange={(e) => handleInputChange(item.name, e.target.value)}
-        required={item.required}
+        required={item.required} //The required attribute tells the browser that this input is mandatory.
         defaultValue={carInfo?.[item.name]}
       />
     </div>

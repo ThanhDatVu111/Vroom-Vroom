@@ -10,11 +10,18 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { db } from "./../../configs";
 import { CarImages, CarListing } from "./../../configs/schema";
+import { Separator } from "@/components/ui/separator";
+import UploadImages from "./components/UploadImages";
+import { BiLoaderAlt } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 const AddListing = () => {
   const [formData, setFormData] = useState([]);
   const [featuresData, setFeaturesData] = useState([]);
   const [carInfo, setCarInfo] = useState();
+  const [triggerUploadImages, setTriggerUploadImages] = useState();
+  const [loader, setLoader] = useState(false);
+  const navigate = useNavigate();
 
   const handleInputChange = (name, value) => {
     setFormData((prevData) => ({
@@ -33,16 +40,23 @@ const AddListing = () => {
   };
 
   const onSubmit = async (e) => {
-    e.preventDefault();
+    setLoader(true);
+    e.preventDefault(); // Prevents the form from being submitted traditionally (check for required fields) and stops page reload.
     console.log(formData);
+    toast("Please Wait...");
 
     try {
-      const result = await db.insert(CarListing).values({
-        ...formData,
-        features: featuresData,
-      });
+      const result = await db
+        .insert(CarListing)
+        .values({
+          ...formData,
+          features: featuresData,
+        })
+        .returning({ id: CarListing.id });
       if (result) {
         console.log("Data Saved");
+        setTriggerUploadImages(result[0]?.id);
+        setLoader(false);
       }
     } catch (e) {
       console.log(e);
@@ -90,6 +104,7 @@ const AddListing = () => {
             </div>
           </div>
           {/* features List  */}
+          <Separator className="my-6" />
           <div>
             <h2 className="font-medium text-xl my-6">Features</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
@@ -106,9 +121,28 @@ const AddListing = () => {
               ))}
             </div>
           </div>
+          {/* Car Images  */}
+          <Separator className="my-6" />
+          <UploadImages
+            triggleUploadImages={triggerUploadImages}
+            setLoader={(v) => {
+              setLoader(v);
+              navigate("/profile");
+            }}
+          />
+          {/* Submit button  */}
+          <Separator className="my-6" />
           <div className="mt-10 flex justify-end">
-            <Button type="button" onClick={(e) => onSubmit(e)}>
-              Submit
+            <Button
+              type="button"
+              disabled={loader}
+              onClick={(e) => onSubmit(e)}
+            >
+              {!loader ? (
+                "Submit"
+              ) : (
+                <BiLoaderAlt className="animate-spin text-lg" />
+              )}
             </Button>
           </div>
         </form>

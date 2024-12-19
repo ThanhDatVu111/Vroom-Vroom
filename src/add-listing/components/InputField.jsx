@@ -7,7 +7,7 @@ function InputField({ item, handleInputChange, carInfo }) {
       <Input
         type={item?.fieldType}
         name={item?.name}
-        required={item?.required}
+        required={item?.required} //The required attribute tells the browser that this input is mandatory.
         defaultValue={carInfo?.[item.name]}
         onChange={(e) => handleInputChange(item.name, e.target.value)}
       />
