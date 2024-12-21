@@ -14,6 +14,9 @@ import { Separator } from "@/components/ui/separator";
 import UploadImages from "./components/UploadImages";
 import { BiLoaderAlt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
+import { useUser } from "@clerk/clerk-react";
+import { useToast } from "@/hooks/use-toast";
 
 const AddListing = () => {
   const [formData, setFormData] = useState([]);
@@ -22,6 +25,8 @@ const AddListing = () => {
   const [triggerUploadImages, setTriggerUploadImages] = useState();
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
+  const { user } = useUser();
+  const { toast } = useToast();
 
   const handleInputChange = (name, value) => {
     setFormData((prevData) => ({
@@ -43,7 +48,10 @@ const AddListing = () => {
     setLoader(true);
     e.preventDefault(); // Prevents the form from being submitted traditionally (check for required fields) and stops page reload.
     console.log(formData);
-    toast("Please Wait...");
+    toast({
+      title: "Save into our database",
+      description: "Please Wait...",
+    });
 
     try {
       const result = await db
@@ -51,15 +59,24 @@ const AddListing = () => {
         .values({
           ...formData,
           features: featuresData,
+          createdBy: user?.primaryEmailAddress?.emailAddress,
+          userName: user?.fullName,
+          userImageUrl: user?.imageUrl,
+          postedOn: moment().format("DD/MM/yyyy"),
         })
         .returning({ id: CarListing.id });
       if (result) {
-        console.log("Data Saved");
         setTriggerUploadImages(result[0]?.id);
+        console.log("Data Saved");
         setLoader(false);
       }
     } catch (e) {
-      console.log(e);
+      setLoader(false);
+      toast({
+        title: "Error",
+        description: "Please fill all required fields",
+      });
+      console.error("Error", e);
     }
   };
 
@@ -124,7 +141,7 @@ const AddListing = () => {
           {/* Car Images  */}
           <Separator className="my-6" />
           <UploadImages
-            triggleUploadImages={triggerUploadImages}
+            triggerUploadImages={triggerUploadImages}
             setLoader={(v) => {
               setLoader(v);
               navigate("/profile");

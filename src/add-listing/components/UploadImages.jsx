@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 import { IoMdCloseCircle } from "react-icons/io";
 import { storage } from "./../../../configs/firebaseConfig";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { db } from "./../../../configs";
 import { CarImages } from "./../../../configs/schema";
 import { db } from "./../../../configs"; //default entry point
-import { CarImages } from "./../../../configs/schema";
 
-function UploadImages(triggerUploadImages, setLoader) {
+function UploadImages({ triggerUploadImages, setLoader }) {
   const [selectedFileList, setSelectedFileList] = useState([]);
   //const [EditCarImageList, setEditCarImageList] = useState([]);
 
   useEffect(() => {
     if (triggerUploadImages) {
+      console.log("Trigger detected, calling UploadImageToServer...");
       UploadImageToServer();
     }
   }, [triggerUploadImages]);
@@ -43,21 +42,27 @@ function UploadImages(triggerUploadImages, setLoader) {
       const metaData = {
         contentType: "image/jpeg",
       };
-      await uploadBytes(storageRef, file, metaData)
-        .then((snapShot) => {
-          console.log("Uploaded File");
-          return getDownloadURL(storageRef);
-        })
-        .then(async (downloadUrl) => {
-          console.log(downloadUrl);
-          await db.insert(CarImages).values({
-            imageUrl: downloadUrl,
-            carListingId: triggleUploadImages,
-          });
-        });
+      try {
+        // Upload file to Firebase Storage
+        const snapShot = await uploadBytes(storageRef, file, metaData);
+        console.log("Uploaded File to Firebase Storage"); // Log successful upload
 
-      setLoader(false);
+        // Get the download URL after the upload
+        const downloadUrl = await getDownloadURL(storageRef);
+        console.log("Download URL:", downloadUrl); // Log the download URL
+
+        // Insert the image URL into the DB
+        const result = await db.insert(CarImages).values({
+          imageUrl: downloadUrl,
+          carListingId: triggerUploadImages,
+        });
+        console.log("Inserted img successfully into DB:", result); // Log successful DB insertion
+      } catch (error) {
+        console.error("Error during upload or DB insert:", error); // Log any errors
+      }
     });
+
+    setLoader(false);
   };
 
   return (
