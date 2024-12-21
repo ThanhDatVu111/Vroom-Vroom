@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import React from "react";
-import { Link } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import MyListing from "./components/MyListing";
 
 function Profile() {
   return (
@@ -14,13 +14,13 @@ function Profile() {
             <TabsTrigger value="inbox">Inbox</TabsTrigger>
             <TabsTrigger value="profile">Profile</TabsTrigger>
           </TabsList>
-          {/* <TabsContent value="my-listing">
+          <TabsContent value="my-listing">
             <MyListing />
           </TabsContent>
-          <TabsContent value="inbox">
+          {/* <TabsContent value="inbox">
             <Inbox />
           </TabsContent>
-          <TabsContent value="profile">Profile Tab</TabsContent> */} 
+          <TabsContent value="profile">Profile Tab</TabsContent>  */}
         </Tabs>
       </div>
     </div>
