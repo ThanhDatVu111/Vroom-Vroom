@@ -34,7 +34,19 @@
       "label": "Category",
       "name": "category",
       "fieldType": "dropdown",
-      "options": ["Sedan", "SUV", "Truck", "Coupe", "Convertible", "Van", "Hatchback","Electric","Hybrid"],
+      "options": [
+        "Sedan",
+        "SUV",
+        "Truck",
+        "Coupe",
+        "Convertible",
+        "Van",
+        "Hatchback",
+        "Electric",
+        "Hybrid",
+        "Sports Car",
+        "Hyper Car"
+      ],
       "required": true,
       "column": 1,
       "icon": "FaCar"
@@ -48,7 +60,7 @@
       "column": 1,
       "icon": "FaCheckCircle"
     },
-    
+
     {
       "label": "Make",
       "name": "make",

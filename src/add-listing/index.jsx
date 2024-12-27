@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import carDetails from "./../shared/carDetails.json";
 import IconField from "./components/IconField";
 import InputField from "./components/InputField";
@@ -13,10 +13,12 @@ import { CarImages, CarListing } from "./../../configs/schema";
 import { Separator } from "@/components/ui/separator";
 import UploadImages from "./components/UploadImages";
 import { BiLoaderAlt } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import moment from "moment";
 import { useUser } from "@clerk/clerk-react";
 import { useToast } from "@/hooks/use-toast";
+import { eq } from "drizzle-orm";
+import Service from "@/Shared/Service";
 
 const AddListing = () => {
   const [formData, setFormData] = useState([]);
@@ -27,6 +29,29 @@ const AddListing = () => {
   const navigate = useNavigate();
   const { user } = useUser();
   const { toast } = useToast();
+  const [searchParams] = useSearchParams();
+
+  const mode = searchParams.get("mode");
+  const recordId = searchParams.get("id");
+
+  useEffect(() => {
+    if (mode == "edit") {
+      GetListingDetail();
+    }
+  }, []);
+
+  const GetListingDetail = async () => {
+    const result = await db
+      .select()
+      .from(CarListing)
+      .innerJoin(CarImages, eq(CarListing.id, CarImages.carListingId))
+      .where(eq(CarListing.id, recordId));
+
+    const resp = Service.FormatResult(result);
+    setCarInfo(resp[0]);
+    setFormData(resp[0]);
+    setFeaturesData(resp[0].features);
+  };
 
   const handleInputChange = (name, value) => {
     setFormData((prevData) => ({
@@ -52,11 +77,10 @@ const AddListing = () => {
       title: "Save into our database",
       description: "Please Wait...",
     });
-
-    try {
+    if (mode == "edit") {
       const result = await db
-        .insert(CarListing)
-        .values({
+        .update(CarListing)
+        .set({
           ...formData,
           features: featuresData,
           createdBy: user?.primaryEmailAddress?.emailAddress,
@@ -64,19 +88,37 @@ const AddListing = () => {
           userImageUrl: user?.imageUrl,
           postedOn: moment().format("DD/MM/yyyy"),
         })
+        .where(eq(CarListing.id, recordId))
         .returning({ id: CarListing.id });
-      if (result) {
-        setTriggerUploadImages(result[0]?.id);
-        console.log("Data Saved");
-        setLoader(false);
-      }
-    } catch (e) {
+      console.log(result);
+      navigate("/profile");
       setLoader(false);
-      toast({
-        title: "Error",
-        description: "Please fill all required fields",
-      });
-      console.error("Error", e);
+    } else {
+      try {
+        const result = await db
+          .insert(CarListing)
+          .values({
+            ...formData,
+            features: featuresData,
+            createdBy: user?.primaryEmailAddress?.emailAddress,
+            userName: user?.fullName,
+            userImageUrl: user?.imageUrl,
+            postedOn: moment().format("DD/MM/yyyy"),
+          })
+          .returning({ id: CarListing.id });
+        if (result) {
+          setTriggerUploadImages(result[0]?.id);
+          console.log("Data Saved");
+          setLoader(false);
+        }
+      } catch (e) {
+        setLoader(false);
+        toast({
+          title: "Error",
+          description: "Please fill all required fields",
+        });
+        console.error("Error", e);
+      }
     }
   };
 
