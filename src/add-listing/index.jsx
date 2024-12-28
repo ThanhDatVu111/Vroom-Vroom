@@ -90,7 +90,8 @@ const AddListing = () => {
         })
         .where(eq(CarListing.id, recordId))
         .returning({ id: CarListing.id });
-      console.log(result);
+      setTriggerUploadImages(result[0]?.id);
+      console.log("Data Saved");
       navigate("/profile");
       setLoader(false);
     } else {
@@ -183,6 +184,8 @@ const AddListing = () => {
           {/* Car Images  */}
           <Separator className="my-6" />
           <UploadImages
+            carInfo={carInfo}
+            mode={mode}
             triggerUploadImages={triggerUploadImages}
             setLoader={(v) => {
               setLoader(v);
