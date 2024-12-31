@@ -22,6 +22,7 @@ function Search() {
     w-[60%] "
     >
       <Select onValueChange={(value) => setCars(value)}>
+        {/*When the value changes, setCars(value) will update the cars state, which triggers a re-render of the component.*/}
         <SelectTrigger className="outline-none md:border-none w-full shadow-none text-lg">
           <SelectValue placeholder="Cars" />
         </SelectTrigger>

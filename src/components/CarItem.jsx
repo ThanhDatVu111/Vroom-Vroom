@@ -7,7 +7,7 @@ import { MdOpenInNew } from "react-icons/md";
 import { Link, useParams } from "react-router-dom";
 function CarItem({ car }) {
   return (
-    <Link to={"/listing-details/" + car?.id}>
+    <Link to={`/listing-details/${car?.id}`}>
       <div className="rounded-xl bg-[#6f0320] border hover:shadow-md cursor-pointer">
         <h2 className="absolute m-2 bg-green-500 px-2 rounded-full text-sm text-white">
           New

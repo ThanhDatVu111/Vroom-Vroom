@@ -128,11 +128,6 @@ const Category = [
   },
   {
     id: 5,
-    name: "Hybrid",
-    icon: "https://cdn-icons-png.flaticon.com/128/3202/3202003.png",
-  },
-  {
-    id: 5,
     name: "Coupe",
     icon: "https://cdn-icons-png.flaticon.com/128/4391/4391630.png",
   },
@@ -145,6 +140,11 @@ const Category = [
     id: 5,
     name: "Truck",
     icon: "https://cdn-icons-png.flaticon.com/128/5814/5814855.png",
+  },
+  {
+    id: 6,
+    name: "Sport",
+    icon: "https://cdn-icons-png.flaticon.com/512/3085/3085339.png",
   },
 ];
 

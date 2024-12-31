@@ -43,9 +43,7 @@
         "Van",
         "Hatchback",
         "Electric",
-        "Hybrid",
-        "Sports Car",
-        "Hyper Car"
+        "Sport"
       ],
       "required": true,
       "column": 1,
@@ -108,7 +106,8 @@
         "Lamborghini",
         "McLaren",
         "Pagani",
-        "Bugatti"
+        "Bugatti",
+        "Koenigsegg"
       ],
       "column": 1,
       "icon": "FaIndustry"
@@ -183,7 +182,7 @@
       "name": "color",
       "fieldType": "dropdown",
       "required": true,
-      "options": ["Black", "Blue", "Gold", "Pink", "Red", "Silver", "White"],
+      "options": ["Black", "Blue", "Gold", "Pink", "Red", "Silver", "White", "Green", "Orange", "Yellow"],
       "column": 2,
       "icon": "FaPalette"
     },
