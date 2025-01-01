@@ -10,11 +10,12 @@ import CarItem from "@/components/CarItem";
 
 function SearchByCategory() {
   const { category } = useParams();
+  console.log(category);
   const [carList, setCarList] = useState([]);
 
   useEffect(() => {
     GetCarList();
-  }, [category]);
+  }, []);
   //The useEffect hook is calling the GetCarList function whenever the category changes.
 
   const GetCarList = async () => {

@@ -22,7 +22,7 @@ const Footer = () => {
                 car with us.
               </p>
               <a
-                href="https://www.linkedin.com/in/thanh-dat-vu-42b468286/"
+                href="/search"
                 className="text-white bg-primary hover:bg-secondary px-8 py-3 rounded-full transition duration-300"
               >
                 Explore Our Cars

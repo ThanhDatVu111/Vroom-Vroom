@@ -18,6 +18,11 @@ function SearchByOptions() {
     GetCarList();
   }, [searchParam]); //Add searchParam as a dependency to re-run when URLquery changes
 
+  // Scroll to the top whenever the component is re-rendered
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [searchParam]);
+
   const GetCarList = async () => {
     const result = await db
       .select()
@@ -38,7 +43,7 @@ function SearchByOptions() {
         <Search />
       </div>
       <div className="p-10 md:px-20">
-        <h2 className="font-bold text-4xl ">Search Result</h2>
+        <h2 className="font-bold text-4xl "> Search Your Dream Car</h2>
 
         {/* List of CarList  */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-7">

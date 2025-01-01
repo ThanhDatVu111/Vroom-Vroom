@@ -9,7 +9,7 @@ function InfoSection() {
             <div className="relative h-64 sm:h-80 lg:h-full">
               <img
                 alt="A car showroom with a luxury car"
-                src="https://i.pinimg.com/564x/48/a4/d5/48a4d503f6639241c6e2c42534a31ad7.jpg"
+                src="https://w0.peakpx.com/wallpaper/873/576/HD-wallpaper-ferrari-laferrari-hypercar-paris-supercar.jpg"
                 className="absolute inset-0 h-full w-full object-cover"
               />
             </div>
