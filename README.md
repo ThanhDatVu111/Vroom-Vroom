@@ -113,7 +113,7 @@ Advanced search options include:
 
 ![Profile](Photo/Profile/a.png)
 
-![Profile](Photo/Profile/a.png)
+![Profile](Photo/Profile/b.png)
 
 Our user profile system features:
 - Show personal listings
@@ -222,7 +222,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### 📋 Prerequisites
 
-...download vite
+- npm
 
 ### Installation
 
