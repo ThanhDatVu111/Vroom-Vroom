@@ -8,7 +8,7 @@ import { ClerkProvider } from "@clerk/clerk-react";
 import Profile from "./profile";
 import AddListing from "./add-listing";
 import { Toaster } from "./components/ui/toaster";
-import SearchByCategory from "./search";
+import SearchByCategory from "./search/[category]";
 import SearchByOptions from "./search";
 import ListingDetail from "./listing-details/[id]";
 

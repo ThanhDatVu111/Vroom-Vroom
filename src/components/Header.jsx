@@ -15,7 +15,7 @@ function Header() {
           <Link to="/">Home</Link>
         </li>
         <li className="font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary">
-          <Link to="/">Search</Link>
+          <Link to="/search">Search</Link>
         </li>
       </ul>
 
@@ -23,12 +23,14 @@ function Header() {
         <div className="flex items-center gap-5 hover:bg-transparent hover:text-[#6f0320]">
           <UserButton />
           <Link to={"/profile"}>
-            <Button>Submit Listing</Button>
+            <Button>Please Log In</Button>
           </Link>
         </div>
       ) : (
         <SignInButton mode="modal" fallbackRedirectUrl="/profile">
-          <Button>Submit Listing</Button>
+          <Link to={"/add-listing"}>
+            <Button>Submit Listing</Button>
+          </Link>
         </SignInButton>
       )}
     </div>

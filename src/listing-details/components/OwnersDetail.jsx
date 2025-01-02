@@ -12,6 +12,23 @@ function OwnersDetail({ carDetail }) {
   const OnMessageOwnerButtonClick = async () => {
     const userId = user.primaryEmailAddress.emailAddress.split("@")[0];
     const ownerUserId = carDetail?.createdBy.split("@")[0];
+
+    if (!userId || !ownerUserId) {
+      console.error("User ID or Owner User ID is missing.");
+      return;
+    }
+
+    // Ensure user details are not null or undefined
+    if (
+      !user?.fullName ||
+      !user?.imageUrl ||
+      !carDetail?.userName ||
+      !carDetail?.userImageUrl
+    ) {
+      console.error("Some user details are missing.");
+      return;
+    }
+    
     //Create Current User ID
     try {
       await Service.CreateSendBirdUser(

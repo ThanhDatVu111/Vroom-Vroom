@@ -62,7 +62,7 @@ function MyListing() {
   return (
     <div className="mt-6">
       <div className="flex justify-between items-center">
-        <h2 className="font-bold text-4xl">My Listing</h2>
+        <h2 className="font-bold text-4xl">Current Listing</h2>
         <Link to={"/add-listing"}>
           <Button>+ Add New Listing</Button>
         </Link>
