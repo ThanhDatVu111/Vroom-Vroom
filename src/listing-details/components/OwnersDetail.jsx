@@ -1,4 +1,4 @@
-import Service from "@/Shared/Service";
+import Service from "@/shared/Service";
 import { Button } from "@/components/ui/button";
 import { useUser } from "@clerk/clerk-react";
 import React from "react";

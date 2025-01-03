@@ -10,7 +10,7 @@ import {
 import { db } from "./../../configs";
 import { CarImages, CarListing } from "./../../configs/schema";
 import { desc, eq } from "drizzle-orm";
-import Service from "@/Shared/Service";
+import Service from "@/shared/Service";
 
 function MostSearchedCar() {
   const [carList, setCarList] = useState([]);

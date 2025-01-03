@@ -5,7 +5,7 @@ import IconField from "./components/IconField";
 import InputField from "./components/InputField";
 import DropdownField from "./components/DropDownField";
 import TextAreaField from "./components/TextAreaField";
-import features from "./../Shared/features.json";
+import features from "./../shared/features.json";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { db } from "./../../configs";
@@ -18,7 +18,7 @@ import moment from "moment";
 import { useUser } from "@clerk/clerk-react";
 import { useToast } from "@/hooks/use-toast";
 import { eq } from "drizzle-orm";
-import Service from "@/Shared/Service";
+import Service from "@/shared/Service";
 
 const AddListing = () => {
   const [formData, setFormData] = useState([]);

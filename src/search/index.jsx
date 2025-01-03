@@ -1,4 +1,4 @@
-import Service from "@/Shared/Service";
+import Service from "@/shared/Service";
 import { db } from "./../../configs";
 import { CarImages, CarListing } from "./../../configs/schema";
 import { eq } from "drizzle-orm";

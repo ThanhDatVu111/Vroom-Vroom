@@ -1,4 +1,4 @@
-import CarSpecification from "@/Shared/CarSpecification";
+import CarSpecification from "@/shared/CarSpecification";
 import IconField from "@/add-listing/components/IconField";
 import React from "react";
 

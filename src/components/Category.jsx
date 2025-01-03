@@ -1,4 +1,4 @@
-import Data from "@/Shared/Data";
+import Data from "@/shared/Data";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 

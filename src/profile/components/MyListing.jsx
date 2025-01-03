@@ -5,7 +5,7 @@ import { CarImages, CarListing } from "./../../../configs/schema";
 import { desc, eq } from "drizzle-orm";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Service from "@/Shared/Service";
+import Service from "@/shared/Service";
 import CarItem from "@/components/CarItem";
 import { FaTrashAlt } from "react-icons/fa";
 import {

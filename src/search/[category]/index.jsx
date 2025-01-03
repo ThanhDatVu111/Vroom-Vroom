@@ -5,7 +5,7 @@ import { CarImages, CarListing } from "./../../../configs/schema";
 import { eq } from "drizzle-orm";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Service from "@/Shared/Service";
+import Service from "@/shared/Service";
 import CarItem from "@/components/CarItem";
 
 function SearchByCategory() {

@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { db } from "./../../../configs";
 import { CarImages, CarListing } from "./../../../configs/schema";
 import { eq } from "drizzle-orm";
-import Service from "@/Shared/Service";
+import Service from "@/shared/Service";
 import ImageGallery from "../components/ImageGallery";
 import Description from "../components/Description";
 import Features from "../components/Features";

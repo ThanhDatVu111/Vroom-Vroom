@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "./ui/separator";
 import { CiSearch } from "react-icons/ci";
-import Data from "@/Shared/Data";
+import Data from "@/shared/Data";
 import { Link } from "react-router-dom";
 function Search() {
   const [cars, setCars] = useState();
