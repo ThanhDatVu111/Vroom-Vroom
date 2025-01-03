@@ -222,44 +222,89 @@ To get a local copy up and running follow these simple example steps.
 
 ### 📋 Prerequisites
 
-- npm
+- Node.js (v16.0.0 or higher)
+- npm (v7.0.0 or higher)
+- Git
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Create required accounts and get API keys:
+
+    Clerk Account - https://clerk.com
+    Neon Database Account - https://neon.tech
+    Firebase Account - https://firebase.google.com
+    Sendbird Account - https://sendbird.com
+
 2. Clone the repo
+
    ```sh
-   git clone https://github.com/github_username/ai-course-generator.git
+    git clone https://github.com/ThanhDatVu111/Vroom-Vroom.git
+    cd Vroom-Vroom
    ```
+
 3. Install NPM packages
+
    ```sh
    npm install
    ```
+
 4. Set up your key
 
    ```js
-    VITE_CLERK_PUBLISHABLE_KEY=
-    VITE_DRIZZLE_DATABASE_URL=
-    VITE_FIREBASE_API_KEY=
-    VITE_SENDBIRD_APP_ID=
-    VITE_SENDBIRD_API_TOKEN=
+    VITE_CLERK_PUBLISHABLE_KEY=your_clerk_key
+    VITE_DRIZZLE_DATABASE_URL=your_neon_database_url
+    VITE_FIREBASE_API_KEY=your_firebase_key
+    VITE_SENDBIRD_APP_ID=your_sendbird_app_id
+    VITE_SENDBIRD_API_TOKEN=your_sendbird_token
    ```
 
-5. Change git remote url to avoid accidental pushes to base project
+5. Set up your Database
 
    ```sh
-    git remote set-url origin https://github.com/github_username/your-repo-name.git
-    git remote -v # confirm the changes
+    npm run db:generate  # Generate database schemas
+    npm run db:push     # Push schemas to your database
    ```
 
 6. Start the development server
+
    npm run dev
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- USAGE EXAMPLES -->
+<!-- CONFIG -->
+
+## 🔧 Configuration Steps
+
+1. Clerk Setup
+
+- Create a new application in Clerk Dashboard
+- Configure authentication methods (Email, Google, etc.)
+- Add your application's domain to allowed origins
+
+
+2. Firebase Setup
+
+- Create a new Firebase project
+- Enable Storage service
+- Set up storage rules for image uploads
+
+
+3. Neon Database Setup
+
+- Create a new database instance
+- Set up your database schema using provided migrations
+- Configure connection settings in your environment variables
+
+
+4. Sendbird Setup
+
+- Create a new application in Sendbird Dashboard
+- Configure chat settings
+- Set up necessary webhooks
+
+
 <!-- CONTRIBUTING -->
 
 ## 🤝 Contributing
